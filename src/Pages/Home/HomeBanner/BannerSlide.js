@@ -5,6 +5,7 @@ const BannerSlide = ({ slide }) => {
     const { id, image, prev, next } = slide;
     return (
         <div id={`slide${id}`} className="carousel-item relative w-full  ">
+            {/* <div className='opacity-0 hover:opacity-100 duration-1000 bg-primary text-white absolute inset-0 z-10 top-5 text-center text-6xl font-semibold'>Get Upto 25% Discount</div> */}
             <div className='carosel-img'>
                 <img src={image} alt="" className="w-full"/>
             </div>
