@@ -28,11 +28,11 @@ const Navbar = () => {
                 <li><Link to='/dashboard'>Dashboard</Link></li>
                 <li><button onClick={handleLogOut} to='/signout'>Sign Out</button></li>
             </>
-            : <li><Link className='btn btn-primary text-white' to='/login'>Login</Link></li>
+            : <li><Link className='btn btn-primary text-white mr-0 lg:mr-4' to='/login'>Login</Link></li>
         }
     </React.Fragment>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 p-0 lg:py-4 container mx-auto ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -42,7 +42,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-xl">we<span className='bg-slate-500 text-white px-1 rounded-md'>Sell</span></Link>
+                <Link to='/' className="btn btn-ghost normal-case text-4xl">we<span className='bg-slate-500 text-white px-1 rounded-md'>Sell</span></Link>
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
