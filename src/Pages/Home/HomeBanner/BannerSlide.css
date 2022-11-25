@@ -1,0 +1,25 @@
+  .left-text{
+    position:absolute;
+    left: -100px;
+    overflow:hidden;
+    top:50%;
+  }
+  .right-text{
+    position:absolute;
+    left: 1600px;
+    overflow:hidden;
+    top: 50%;
+  }
+  .hover-this{
+    overflow:hidden;
+
+  }
+  .hover-this:hover .right-text{
+    left:90%;
+    transition:left, 1000ms ease-in-out;
+    overflow:hidden;
+  }
+  .hover-this:hover .left-text{
+    left:7%;
+    transition:right, 1000ms ease-in-out;
+  }
