@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // import { toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
-// import useToken from '../../../hooks/useToken';
+import useToken from '../../../hooks/useToken';
 import login from '../../../assets/images/login.jpg';
 
 
@@ -15,11 +15,11 @@ const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [createdUserEmail, setCreatedUserEmail] = useState('');
-    // const [token] = useToken(createdUserEmail);
+    const [token] = useToken(createdUserEmail);
 
-    // if (token) {
-    //     navigate('/');
-    // }
+    if (token) {
+        navigate('/');
+    }
     const handleSignUp = data => {
         console.log(data);
         setSignupError('');
@@ -36,7 +36,7 @@ const SignUp = () => {
                 updateUser(userInfo)
                     .then(() => { })
                     .catch(error => console.log(error))
-                saveUser(data.name, data.email);
+                saveUser(data.name, data.email, data.role);
                 console.log(user);
             })
 
@@ -46,8 +46,8 @@ const SignUp = () => {
             })
     }
 
-    const saveUser = (name, email) => {
-        const user = { name, email };
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
         fetch('http://localhost:5000/users', {
             method: "POST",
             headers: {
@@ -104,6 +104,19 @@ const SignUp = () => {
                     })} type="password" placeholder="password" className="input input-bordered" />
                     {errors.password && <p className='text-red-500' >{errors.password?.message}</p>}
                 </div>
+                <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Role</span>
+                        </label>
+                        <select className="select select-bordered w-full max-w-xs"
+                            {...register("role", {
+                                required: true
+                            })}
+                        >
+                            <option default value="user">User</option>
+                            <option value="seller">Seller</option>
+                        </select>
+                    </div>
                 <div className="form-control mt-6">
                     <button className="btn btn-accent">SignUp</button>
                 </div>
