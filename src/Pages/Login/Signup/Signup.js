@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import useToken from '../../../hooks/useToken';
 import login from '../../../assets/images/login.jpg';
@@ -26,9 +26,9 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(res => {
                 const user = res.user;
-                // toast.success('Success Notification !', {
-                //     position: toast.POSITION.TOP_CENTER
-                // });
+                toast.success('Acoount Created Successfully!', {
+                    position: toast.POSITION.TOP_CENTER
+                });
 
                 const userInfo = {
                     displayName: data.name
@@ -69,7 +69,7 @@ const SignUp = () => {
                 <h3 className='absolute bottom-36 left-36 w-1/4 text-xl font-bold text-center'>Now, you are waiting to create a new account!</h3>
             </div>
             <form onSubmit={handleSubmit(handleSignUp)} className="card-body">
-                <h1 className="text-3xl font-bold text-center">Sign Up</h1>
+                <h1 className="text-3xl font-bold text-center text-primary">Sign Up</h1>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Name</span>
@@ -117,10 +117,10 @@ const SignUp = () => {
                             <option value="seller">Seller</option>
                         </select>
                     </div>
-                <div className="form-control mt-6">
-                    <button className="btn btn-accent">SignUp</button>
+                <div className="form-control mt-2">
+                    <button className="btn btn-primary text-white">SignUp</button>
                 </div>
-                <p className='text-center'>Already have an account? <Link to='/login' className='text-primary'>Please Login</Link></p>
+                <p className='text-center'>Already have an account? <Link to='/login' className='text-primary font-bold'>Please Login</Link></p>
             </form>
         </div>
     );
