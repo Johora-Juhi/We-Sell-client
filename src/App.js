@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto App'>
       <RouterProvider router={router} />
       <ToastContainer/>
     </div>

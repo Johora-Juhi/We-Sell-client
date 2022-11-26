@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './BannerSlide.css';
 const BannerSlide = ({ slide,advertise }) => {
     const { id, image, prev, next } = slide;
+    useEffect(() => {
+        window.scrollTo(0,0)
+        }, [])
     return (
         <div id={`slide${id}`} className="carousel-item relative w-full hover-this">
             <div className='carosel-img'>

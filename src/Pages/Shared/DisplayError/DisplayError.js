@@ -1,21 +1,34 @@
-import React, { useContext } from 'react';
-import { Link, useRouteError } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './DisplayError.css'
 
 const DisplayError = () => {
-    const error = useRouteError();
-    const { logOut } = useContext(AuthContext);
-    const handleLogOut = () => {
-        logOut()
-            .then(() => { })
-            .catch(error => console.error(error))
-    }
     return (
-        <div className='bg-blue-50 p-8'>
-            <p>Something Went Wrong</p>
-            <p className='text-red-500 py-2'>{error.statusText || error.message}</p>
-            <h1 className='text-xl'>Please <Link onClick={handleLogOut} to='/signout'>Sign Out</Link> and again login</h1>
-        </div>
+        <section class="page_404">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 ">
+                            <div class="col-sm-10 col-sm-offset-1  text-center">
+                                <div class="four_zero_four_bg">
+                                    <h1 class="text-center ">404</h1>
+
+
+                                </div>
+
+                                <div class="contant_box_404">
+                                    <h3 class="text-3xl">
+                                        Look like you're lost
+                                    </h3>
+
+                                    <p className='text-3xl'>the page you are looking for not avaible!</p>
+
+                                    <Link to='./' class="link_404 text-2xl rounded-xl">Go to Home</Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
     );
 };
 

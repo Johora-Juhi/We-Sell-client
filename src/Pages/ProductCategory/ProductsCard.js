@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const ProductsCard = ({ product, setAvailabeProducts }) => {
+    useEffect(() => {
+        window.scrollTo(0,0)
+        }, [])
     const {
         name,
         image,
