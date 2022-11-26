@@ -6,7 +6,7 @@ import './Specialties.css'
 
 const Specialties = () => {
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-2 lg:mx-40 border-y border-gray-400 py-16 '>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-2 lg:mx-28 border-y border-gray-400 py-16 '>
             <div className='flex flex-col lg:flex-row gap-4 justify-center overflow-hidden items-center border-none border-gray-400 py-2 right-border'>
                 <div className="avatar zoom">
                     <div className="w-16 rounded">
