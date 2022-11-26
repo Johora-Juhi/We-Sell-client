@@ -38,7 +38,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                const role = "user";
+                const role = "buyer";
                 saveUser(user.displayName, user.email, role);
             })
             .catch(error => console.error('error', error))

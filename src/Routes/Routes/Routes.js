@@ -3,6 +3,7 @@ import Main from "../../layouts/Main/Main";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Signup from "../../Pages/Login/Signup/Signup";
+import ProductCategory from "../../Pages/ProductCategory/ProductCategory";
 import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 
 const router = createBrowserRouter([
@@ -14,6 +15,11 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/categories/:id',
+                element: <ProductCategory></ProductCategory>,
+                loader:({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
             },
             {
                 path: '/login',
