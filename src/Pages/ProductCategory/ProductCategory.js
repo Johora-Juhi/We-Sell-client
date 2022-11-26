@@ -5,13 +5,22 @@ import useTitle from '../../hooks/useTitle';
 import Loading from '../Shared/Loading/Loading';
 import BookingModal from './BookingModal/BookingModal';
 import ProductsCard from './ProductsCard';
+import banner from '../../assets/images/banner2.jpg';
 
 const ProductCategory = () => {
     useTitle('Products');
     const products = useLoaderData();
     const [avaiableProducts, setAvailabeProducts]=useState(null);
      return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-2 lg:mx-32 gap-8 my-16'>
+        <div>
+            <div className='relative mb-32'>
+                <img className='' src={banner} alt="" />
+                <div className='absolute top-1/3 w-full text-center'>
+                    <h1 className='uppercase text-5xl font-bold text-white'>want one!</h1>
+                    {/* <p>Avaiable Options {products.length}</p> */}
+                </div>
+            </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mx-2 lg:mx-32'>
             {
                 products.map(product=><ProductsCard
                 key={product._id}
@@ -19,6 +28,7 @@ const ProductCategory = () => {
                 setAvailabeProducts={setAvailabeProducts}>
                 </ProductsCard>)
             }
+            </div>
             {
                 avaiableProducts &&
                 <BookingModal

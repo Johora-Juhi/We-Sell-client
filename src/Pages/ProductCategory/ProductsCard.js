@@ -21,7 +21,7 @@ const ProductsCard = ({ product, setAvailabeProducts }) => {
             <figure className="pl-10 w-full lg:w-2/4">
                 <img src={image} alt="" />
             </figure>
-            <div className="my-10 text-center lg:text-start w-full  lg:w-2/4 ">
+            <div className="my-8 text-center lg:text-start w-full  lg:w-2/4 ">
                 <h2 className="font-semibold text-2xl mb-3">{name}</h2>
                 <div className="font-light">
                 <p>Used: {yearsUsed} years</p>

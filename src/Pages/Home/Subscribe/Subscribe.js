@@ -2,7 +2,7 @@ import React from 'react';
 
 const Subscribe = () => {
     return (
-        <div className='flex flex-col md:flex-row justify-between items-center w-5/6 mt-16 mx-auto'>
+        <div className='flex flex-col md:flex-row justify-between items-center w-5/6 mt-32 mx-auto'>
             <div>
                 <h1 className='uppercase text-xl  font-bold'>know it all first!</h1>
                 <p className='font-light'>Never Miss Anything From Multikart By Signing Up To Our Newsletter.</p>
