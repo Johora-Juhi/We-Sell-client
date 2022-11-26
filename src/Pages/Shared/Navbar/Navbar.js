@@ -1,9 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/categories')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setCategories(data);
+            })
+    }, [])
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -16,10 +26,9 @@ const Navbar = () => {
                 Categories
                 <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
             </Link>
-            <ul className="p-2">
-                <li><Link>Submenu 1</Link></li>
-                <li><Link>Submenu 2</Link></li>
-                <li><Link>Submenu 2</Link></li>
+            <ul className="p-2 z-30">
+                {categories.map(category => <li key={category._id}><Link to={`categories/${category.categoryId}`}>{category.categoryName}</Link></li>
+                )}
             </ul>
         </li>
         <li><Link to='/blogs'>Blogs</Link></li>

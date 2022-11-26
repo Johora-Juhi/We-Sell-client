@@ -4,20 +4,23 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import useToken from '../../../hooks/useToken';
 import login from '../../../assets/images/login.jpg';
+import useTitle from '../../../hooks/useTitle';
 
 const Login = () => {
+    useTitle('Login');
     const { signIn, googleLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from?.pathname || '/';
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [LoginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(LoginUserEmail);
 
     if (token) {
-        navigate(from, { replace: true })
+        // navigate(from, { replace: true });
+        navigate('/')
     }
     const handleLogin = data => {
         console.log(data);

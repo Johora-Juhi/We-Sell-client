@@ -19,7 +19,7 @@ const HomeBanner = () => {
         }
     ]
     return (
-        <div className="carousel w-full">
+        <div className="carousel w-full z-10">
             {
                 bannerData.map(slide => <BannerSlide
                     key={slide.id}

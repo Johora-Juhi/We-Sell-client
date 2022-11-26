@@ -6,9 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import useToken from '../../../hooks/useToken';
 import login from '../../../assets/images/login.jpg';
+import useTitle from '../../../hooks/useTitle';
 
 
 const SignUp = () => {
+    useTitle('Signup');
     const { createUser, updateUser } = useContext(AuthContext);
     const [signupError, setSignupError] = useState('');
     const navigate = useNavigate();
