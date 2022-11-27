@@ -97,7 +97,7 @@ const MyProducts = () => {
                     <tbody>
                         {
                             products.map((product, i) =>
-                                <tr key={product._id} className="hover">
+                                <tr key={product._id}>
                                     <th>{i + 1}</th>
                                     <td>{product.name}</td>
                                     <td>{product.resalePrice}</td>

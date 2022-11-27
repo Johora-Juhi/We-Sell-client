@@ -1,5 +1,6 @@
 import React from 'react';
 import useTitle from '../../../hooks/useTitle';
+import AdvertiseItem from '../AdvertiseItem/AdvertiseItem/AdvertiseItem';
 import HomeBanner from '../HomeBanner/HomeBanner';
 import ProductCategories from '../ProductCategories/ProductCategories';
 import Specialties from '../Specialty/Specialties';
@@ -11,6 +12,7 @@ const Home = () => {
         <div>
             <HomeBanner></HomeBanner>
             <ProductCategories></ProductCategories>
+            <AdvertiseItem></AdvertiseItem>
             <Specialties></Specialties> 
             <Subscribe></Subscribe>           
         </div>
