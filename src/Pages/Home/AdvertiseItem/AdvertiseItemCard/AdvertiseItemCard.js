@@ -10,7 +10,6 @@ const AdvertiseItemCard = ({ product }) => {
                     <figure><img src={image} alt="Shoes" style={{ height: '300px' }} /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{name}</h2>
-                        {/* <div className="divider"></div>  */}
                         <p className=''><span className='text-xl'>৳</span> {resalePrice}</p>
                         <p className='font-light'>Original Price: <span className='text-xl'>৳</span> <del className='text-red-500'>{originalPrice}</del></p>
                     </div>

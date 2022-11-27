@@ -47,8 +47,8 @@ const MyProducts = () => {
                     refetch();
                     Swal.fire({
                         position: 'center-center',
-                        icon: 'error',
-                        title: 'Product Deleted Successfully',
+                        icon: 'success',
+                        title: 'Product Advertised Successfully',
                         showConfirmButton: false,
                         timer: 2000
                     })
@@ -97,7 +97,7 @@ const MyProducts = () => {
                     <tbody>
                         {
                             products.map((product, i) =>
-                                <tr key={product._id}>
+                                <tr key={product._id}  className="hover">
                                     <th>{i + 1}</th>
                                     <td>{product.name}</td>
                                     <td>{product.resalePrice}</td>
