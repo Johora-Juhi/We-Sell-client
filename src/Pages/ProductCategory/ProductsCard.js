@@ -1,22 +1,57 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const ProductsCard = ({ product, setAvailabeProducts }) => {
     useEffect(() => {
         window.scrollTo(0, 0)
-    }, [])
-    const {
-        name,
+    }, []);
+    const { user } = useContext(AuthContext);
+    const { name, image, conditionType, resalePrice, originalPrice, yearsUsed, sellerName, sellerPhone, sellerLocation, postTime, paid, status } = product;
+    const wishlist = {
+        productName: name,
         image,
-        conditionType,
-        resalePrice,
-        originalPrice,
-        yearsUsed,
+        price: resalePrice,
         sellerName,
-        sellerPhone,
-        sellerLocation,
-        postTime,
-        paid
-    } = product;
+        email: user.email,
+        phone: sellerPhone,
+        location: sellerLocation,
+    }
+
+    const handleAddToWishlist = () => {
+
+        fetch('http://localhost:5000/wishlist', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(wishlist),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setAvailabeProducts(null);
+                    Swal.fire({
+                        position: 'center center',
+                        icon: 'success',
+                        title: 'Successfully Added to WIshlist',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+                else {
+                    Swal.fire({
+                        position: 'center center',
+                        icon: 'error',
+                        title: data.message
+                    })
+                }
+            })
+        console.log(wishlist);
+
+    }
+
     return (
         <>
             {resalePrice && !paid &&
@@ -35,14 +70,19 @@ const ProductsCard = ({ product, setAvailabeProducts }) => {
 
                             <div className="divider"></div>
                             <h2 className='font-bold '>Seller Info</h2>
-                            <p>Name: {sellerName}</p>
+                            <div className='flex gap-2 justify-center items-center'>
+                                <p>Name: {sellerName}</p>
+                                {product.verified && <p className='text-blue-500 text-xl font-bold'>✔</p>}
+                            </div>
                             <p>Phone: {sellerPhone}</p>
                             <p>Location: {sellerLocation}</p>
                             <p>Posted: {postTime}</p>
                         </div>
-                        {/* <button className="btn btn-primary rounded-none text-white mt-2 btn-sm">Book Now</button> */}
                         {/* disabled={status === 'paid'} */}
-                        <label onClick={() => setAvailabeProducts(product)} htmlFor="order-modal" className="btn btn-primary rounded-none text-white mt-2 btn-sm">Book Now</label>
+                        <div className='flex justify-center gap-6 items-center mt-2 '>
+                            <label disabled={status === 'paid'} onClick={() => setAvailabeProducts(product)} htmlFor="order-modal" className="btn btn-primary rounded-none text-white btn-sm">Book Now</label>
+                            <button onClick={handleAddToWishlist} className='btn btn-primary btn-outline btn-sm '>Add To Wishlist</button>
+                        </div>
                     </div>
                 </div>
             }</>

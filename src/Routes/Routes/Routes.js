@@ -8,6 +8,7 @@ import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
+import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
 import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
@@ -29,9 +30,9 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/categories/:id',
+                path: '/category/:id',
                 element: <PrivateRoute><ProductCategory></ProductCategory></PrivateRoute>,
-                loader:({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
+                loader:({params})=> fetch(`http://localhost:5000/category/${params.id}`)
             },
             {
                 path: '/login',
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/mywishlist',
+                element: <MyWishlist></MyWishlist>
             },
             {
                 path: '/dashboard/allsellers',

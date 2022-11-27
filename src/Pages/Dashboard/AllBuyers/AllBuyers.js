@@ -22,7 +22,6 @@ const AllBuyers = () => {
         setDeletingBuyer(null);
     }
     const handleDetetingBuyer = buyer => {
-        console.log(buyer);
         fetch(`http://localhost:5000/users/buyers/${buyer._id}`, {
             method: 'DELETE',
             headers: {
@@ -46,7 +45,7 @@ const AllBuyers = () => {
     return (
         <div className='bg-blue-50 p-8'>
             <div>
-                <h1 className='text-3xl'>All Users</h1>
+                <h1 className='text-3xl'>All User</h1>
             </div>
             <div className="overflow-x-auto my-8">
                 <table className="table w-full">

@@ -25,7 +25,6 @@ const AddProduct = () => {
     });
 
     const handleAddProduct = data => {
-        console.log(data)
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -66,7 +65,6 @@ const AddProduct = () => {
                 })
                     .then(res => res.json())
                     .then(result => {
-                        console.log(result);
                         Swal.fire({
                             position: 'center center',
                             icon: 'success',
@@ -81,7 +79,7 @@ const AddProduct = () => {
     return (
         <div className='flex justify-center items-center my-5 bg-slate-100'>
             <div className='w-full px-7 my-10 py-10 mx-5 '>
-                <div className="text-3xl text-center">Add Product</div>
+                <div className="text-3xl text-center">Add A Product</div>
                 <form onSubmit={handleSubmit(handleAddProduct)}>
                     <div className=''>
                         <div className="form-control w-full mb-2">
@@ -196,11 +194,8 @@ const AddProduct = () => {
                             <label className="label">
                                 <span className="label-text">Image</span>
                             </label>
-                            <input type="file" className="input input-bordered w-full py-2"
-                                {...register("image", {
-                                    required: true
-                                })}
-                            />
+                            <input type="file" className="file-input file-input-bordered w-full"
+                                {...register("image",{required: true})} />
                         </div>
                     </div>
 

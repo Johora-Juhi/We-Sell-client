@@ -12,7 +12,6 @@ const MyProducts = () => {
         setDeletingProduct(null);
     }
     const handleDetetingProduct = product => {
-        console.log(product);
         fetch(`http://localhost:5000/product/${product._id}`, {
             method: 'DELETE',
             headers: {
@@ -70,7 +69,6 @@ const MyProducts = () => {
             return data
         }
     })
-    console.log(products);
 
     if (isLoading) {
         <Loading></Loading>
