@@ -15,13 +15,6 @@ const ProductCategory = () => {
     const [avaiableProducts, setAvailabeProducts] = useState(null);
     return (
         <div>
-            {/* <div className='mb-32' >
-                <img className='' src={banner} alt="" style={{height:'400px'}}/>
-                <div className='absolute top-1/3 w-full text-center'>
-                    <h1 className='uppercase text-5xl font-bold text-white'>want one!</h1>
-                    {/* <p>Avaiable Options {products.length}</p> */}
-            {/* </div> */}
-            {/* </div> * */}
             <div className='proBanner'>
                 <h1 className='text-6xl uppercase text-white animate__animated animate__fadeInDown'>want one !</h1>
             </div>

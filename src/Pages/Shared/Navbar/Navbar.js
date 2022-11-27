@@ -7,7 +7,7 @@ const Navbar = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('http://localhost:5000/categoriesType')
             .then(res => res.json())
             .then(data => {
                 console.log(data);

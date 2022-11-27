@@ -13,12 +13,12 @@ const AddProduct = () => {
 
     const currnetYear = new Date().getFullYear();
     const today = format(new Date(), 'PP')
-    const imageHostKey = process.env.REACT_APP_imgbb_key;
+    const imageHostKey = process.env.REACT_APP_imgbb_Key;
 
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories')
+            const res = await fetch('http://localhost:5000/categoriesType')
             const data = await res.json();
             return data;
         }
@@ -39,10 +39,9 @@ const AddProduct = () => {
                 if (imgData.success) {
                     console.log(imgData.data.url);
                 }
-
-                console.log(imgData);
-                const instrument = {
+                const product = {
                     sellerName: user.displayName,
+                    email: user.email,
                     name: data.productName,
                     conditionType: data.condition,
                     sellerPhone: data.mobile,
@@ -55,16 +54,15 @@ const AddProduct = () => {
                     image: imgData.data.url,
                     yearsUsed: currnetYear - data.yearOfPurchase,
                     postTime: today
-
                 }
-                console.log(instrument);
+
                 fetch('http://localhost:5000/categories', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     },
-                    body: JSON.stringify(instrument)
+                    body: JSON.stringify(product)
                 })
                     .then(res => res.json())
                     .then(result => {
@@ -104,13 +102,13 @@ const AddProduct = () => {
                                 <span className="label-text">Product Condition</span>
                             </label>
                             <select className="select select-bordered w-full"
-                                {...register("typeId", {
+                                {...register("condition", {
                                     required: true
                                 })}
                             >
                                 <option value="Excellent">Excellent</option>
                                 <option value="Good">Good</option>
-                                <option value="Fair">fair</option>
+                                <option value="Fair">Fair</option>
                             </select>
                         </div>
                         <div className="form-control w-full mb-2">
