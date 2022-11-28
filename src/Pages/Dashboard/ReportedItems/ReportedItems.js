@@ -25,7 +25,7 @@ const ReportedItems = () => {
                     refetch();
                     Swal.fire({
                         position: 'center-center',
-                        icon: 'error',
+                        icon: 'success',
                         title: 'Product Deleted Successfully',
                         showConfirmButton: false,
                         timer: 2000

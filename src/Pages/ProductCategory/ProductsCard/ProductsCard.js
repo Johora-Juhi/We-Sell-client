@@ -25,9 +25,16 @@ const ProductsCard = ({ product, setAvailabeProducts }) => {
                         title: 'Product Reported',
                         showConfirmButton: false,
                         timer: 2000
-                    })
+                    })}
+                    else {
+                        Swal.fire({
+                            position: 'center center',
+                            icon: 'error',
+                            title: data.message
+                          })
+                    }
                 }
-            })
+            )
     }
 
     return (
@@ -58,7 +65,7 @@ const ProductsCard = ({ product, setAvailabeProducts }) => {
                             <p>Posted: {postTime}</p>
                         </div>
                         <div className='flex justify-center lg:justify-start gap-6 items-center mt-2 '>
-                            <label disabled={status === 'paid'} onClick={() => setAvailabeProducts(product)} htmlFor="order-modal" className="btn btn-primary rounded-none text-white btn-sm">Book Now</label>
+                            <label onClick={() => setAvailabeProducts(product)} htmlFor="order-modal" className="btn btn-primary rounded-none text-white btn-sm">Book Now</label>
                             <button onClick={() => handleReport(_id)} className='btn btn-error btn-outline btn-sm ml-5'>Report</button>
                         </div>
                     </div>

@@ -62,12 +62,11 @@ const router = createBrowserRouter([
                 path: '/dashboard/myorders',
                 element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
-            {
-                path: '/dashboard/payment/:id',
-                element: <BuyerRoute><MakePayment></MakePayment></BuyerRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/myorders/${params.id}`)
-
-            },
+            // {
+            //     path: '/dashboard/payment/:id',
+            //     element: <BuyerRoute><MakePayment></MakePayment></BuyerRoute>,
+            //     loader: ({ params }) => fetch(`http://localhost:5000/myorders/${params.id}`)
+            // },
             {
                 path: '/dashboard/allsellers',
                 element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
