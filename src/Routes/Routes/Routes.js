@@ -6,10 +6,9 @@ import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import Dashboard from "../../Pages/Dashboard/Dasboard/Dashboard";
-import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
+import MakePayment from "../../Pages/Dashboard/MakePayment/MakePayment";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
-import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
 import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
@@ -64,8 +63,10 @@ const router = createBrowserRouter([
                 element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
             {
-                path: '/dashboard/mywishlist',
-                element: <BuyerRoute><MyWishlist></MyWishlist></BuyerRoute>
+                path: '/dashboard/payment/:id',
+                element: <BuyerRoute><MakePayment></MakePayment></BuyerRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/myorders/${params.id}`)
+
             },
             {
                 path: '/dashboard/allsellers',
@@ -87,15 +88,6 @@ const router = createBrowserRouter([
                 path: '/dashboard/myProducts',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
-            {
-                path: '/dashboard/myBuyers',
-                element: <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
-            },
-            // {
-            //     path: '/dashboard/payment/:id',
-            //     element: <MakePayment></MakePayment>,
-            //     loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
-            // },
         ]
     }
 ])

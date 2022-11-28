@@ -1,9 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import useTitle from '../../../hooks/useTitle';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 
 const AllBuyers = () => {
+    useTitle('All Buyers');
+
     const [deletingBuyer, setDeletingBuyer] = useState(null)
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],

@@ -4,8 +4,11 @@ import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal'
 import Swal from 'sweetalert2'
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
+import useTitle from '../../../hooks/useTitle';
 
 const MyProducts = () => {
+    useTitle('My Product');
+
     const { user } = useContext(AuthContext);
     const [deletingProduct, setDeletingProduct] = useState(null);
     const closeModal = () => {

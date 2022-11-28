@@ -1,56 +1,33 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Swal from 'sweetalert2';
-import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const ProductsCard = ({ product, setAvailabeProducts }) => {
+    
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []);
-    const { user } = useContext(AuthContext);
     const { _id, name, image, conditionType, resalePrice, originalPrice, yearsUsed, yearOfPurchase, sellerName, sellerPhone, sellerLocation, postTime, paid, status } = product;
-    const wishlist = {
-        productId: _id,
-        productName: name,
-        image,
-        price: resalePrice,
-        sellerName,
-        email: user.email,
-        phone: sellerPhone,
-        location: sellerLocation,
-    }
 
-    const handleAddToWishlist = () => {
-
-        fetch('http://localhost:5000/wishlist', {
-            method: 'POST',
+    const handleReport = id => {
+        fetch(`http://localhost:5000/productReport/${id}`, {
+            method: 'PUT',
             headers: {
-                'content-type': 'application/json',
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
-            },
-            body: JSON.stringify(wishlist),
+            }
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                if (data.acknowledged) {
+                if (data.modifiedCount > 0) {
+                    // refetch();
                     Swal.fire({
-                        position: 'center center',
+                        position: 'center-center',
                         icon: 'success',
-                        title: 'Successfully Added to WIshlist',
+                        title: 'Product Reported',
                         showConfirmButton: false,
                         timer: 2000
                     })
                 }
-                else {
-                    Swal.fire({
-                        position: 'center center',
-                        icon: 'error',
-                        title: data.message
-                    })
-                }
             })
-        console.log(wishlist);
-
     }
 
     return (
@@ -80,10 +57,9 @@ const ProductsCard = ({ product, setAvailabeProducts }) => {
                             <p>Location: {sellerLocation}</p>
                             <p>Posted: {postTime}</p>
                         </div>
-                        {/* disabled={status === 'paid'} */}
                         <div className='flex justify-center lg:justify-start gap-6 items-center mt-2 '>
                             <label disabled={status === 'paid'} onClick={() => setAvailabeProducts(product)} htmlFor="order-modal" className="btn btn-primary rounded-none text-white btn-sm">Book Now</label>
-                            <button onClick={handleAddToWishlist} className='btn btn-primary btn-outline btn-sm '>Add To Wishlist</button>
+                            <button onClick={() => handleReport(_id)} className='btn btn-error btn-outline btn-sm ml-5'>Report</button>
                         </div>
                     </div>
                 </div>

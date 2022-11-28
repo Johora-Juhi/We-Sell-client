@@ -5,8 +5,11 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 
 const AddProduct = () => {
+    useTitle('Add Product');
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
@@ -51,7 +54,7 @@ const AddProduct = () => {
                     yearOfPurchase: data.yearOfPurchase,
                     description: data.description,
                     image: imgData.data.url,
-                    yearsUsed: toString(currnetYear - data.yearOfPurchase),
+                    yearsUsed: currnetYear - data.yearOfPurchase,
                     postTime: today
                 }
 

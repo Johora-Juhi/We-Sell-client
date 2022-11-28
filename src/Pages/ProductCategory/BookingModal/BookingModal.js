@@ -76,11 +76,6 @@ const BookingModal = ({avaiableProducts, setAvailabeProducts}) => {
                         </label>
                         <input name='email' disabled type="text" value={user?.email} className="input input-bordered w-full" />
 
-                        {/* <label className="label">
-                            <span className="label-text">Purchesing Product</span>
-                        </label>
-                        <input disabled type="text" value={productName} className="input input-bordered w-full" /> */}
-
                         <label className="label">
                             <span className="label-text">Product Price</span>
                         </label>
