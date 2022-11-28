@@ -11,7 +11,7 @@ const AllBuyers = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/buyers', {
+            const res = await fetch('https://assignment-twelve-server-six.vercel.app/users/buyers', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -25,7 +25,7 @@ const AllBuyers = () => {
         setDeletingBuyer(null);
     }
     const handleDetetingBuyer = buyer => {
-        fetch(`http://localhost:5000/users/buyers/${buyer._id}`, {
+        fetch(`https://assignment-twelve-server-six.vercel.app/users/buyers/${buyer._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

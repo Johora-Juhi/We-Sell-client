@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import useTitle from '../../../hooks/useTitle';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
@@ -13,7 +13,7 @@ const ReportedItems = () => {
         setDeletingProduct(null);
     }
     const handleDetetingProduct = product => {
-        fetch(`http://localhost:5000/reportedproduct/${product._id}`, {
+        fetch(`https://assignment-twelve-server-six.vercel.app/reportedproduct/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -34,8 +34,8 @@ const ReportedItems = () => {
             })
     }
 
-    
-    const url = `http://localhost:5000/showReports`;
+
+    const url = `https://assignment-twelve-server-six.vercel.app/showReports`;
 
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
@@ -57,50 +57,50 @@ const ReportedItems = () => {
 
     return (
         <div className='bg-blue-50 p-8'>
-        <div>
-            <h1 className='text-xl font-bold'>Reported Products: {products?.length}</h1>
-        </div>
-        <div className="overflow-x-auto my-8">
-            <table className="table w-full">
+            <div>
+                <h1 className='text-xl font-bold'>Reported Products: {products?.length}</h1>
+            </div>
+            <div className="overflow-x-auto my-8">
+                <table className="table w-full">
 
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Product Name</th>
-                        <th>Seller Name</th>
-                        <th>Seller Phone</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        products.map((product, i) =>
-                            <tr key={product._id}  className="hover">
-                                <th>{i + 1}</th>
-                                <td>{product.name}</td>
-                                <td>{product.sellerName}</td>
-                                <td>{product.sellerPhone}</td>
-                                
-                                <td>
-                                    <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs btn-error text-white">Delete</label>
-                                </td>
-                            </tr>
-                        )
-                    }
-                </tbody>
-            </table>
-        </div>
-        {
-            deletingProduct && <ConfirmationModal
-                title={'Are you sure you want to delete'}
-                message={`If you delete ${deletingProduct.name}. It can not be done`}
-                successAction={handleDetetingProduct}
-                modalData={deletingProduct}
-                successButtonName={'Delete'}
-                closeModal={closeModal}
-            ></ConfirmationModal>
-        }
-    </div >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Product Name</th>
+                            <th>Seller Name</th>
+                            <th>Seller Phone</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            products.map((product, i) =>
+                                <tr key={product._id} className="hover">
+                                    <th>{i + 1}</th>
+                                    <td>{product.name}</td>
+                                    <td>{product.sellerName}</td>
+                                    <td>{product.sellerPhone}</td>
+
+                                    <td>
+                                        <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs btn-error text-white">Delete</label>
+                                    </td>
+                                </tr>
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
+            {
+                deletingProduct && <ConfirmationModal
+                    title={'Are you sure you want to delete'}
+                    message={`If you delete ${deletingProduct.name}. It can not be done`}
+                    successAction={handleDetetingProduct}
+                    modalData={deletingProduct}
+                    successButtonName={'Delete'}
+                    closeModal={closeModal}
+                ></ConfirmationModal>
+            }
+        </div >
     );
 };
 

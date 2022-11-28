@@ -15,7 +15,7 @@ const MyProducts = () => {
         setDeletingProduct(null);
     }
     const handleDetetingProduct = product => {
-        fetch(`http://localhost:5000/product/${product._id}`, {
+        fetch(`https://assignment-twelve-server-six.vercel.app/product/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -37,7 +37,7 @@ const MyProducts = () => {
     }
 
     const handleAdvertise = id => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://assignment-twelve-server-six.vercel.app/product/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -58,7 +58,7 @@ const MyProducts = () => {
             })
     }
 
-    const url = `http://localhost:5000/myproducts?email=${user?.email}`;
+    const url = `https://assignment-twelve-server-six.vercel.app/myproducts?email=${user?.email}`;
 
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products', user?.email],
@@ -98,7 +98,7 @@ const MyProducts = () => {
                     <tbody>
                         {
                             products.map((product, i) =>
-                                <tr key={product._id}  className="hover">
+                                <tr key={product._id} className="hover">
                                     <th>{i + 1}</th>
                                     <td>{product.name}</td>
                                     <td>{product.resalePrice}</td>

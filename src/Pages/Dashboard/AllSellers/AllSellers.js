@@ -11,7 +11,7 @@ const AllSellers = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/sellers', {
+            const res = await fetch('https://assignment-twelve-server-six.vercel.app/users/sellers', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -21,7 +21,7 @@ const AllSellers = () => {
         }
     });
     const handleVarifySeller = seller => {
-        fetch(`http://localhost:5000/users/sellers`, {
+        fetch(`https://assignment-twelve-server-six.vercel.app/users/sellers`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -49,7 +49,7 @@ const AllSellers = () => {
         setDeletingSeller(null);
     }
     const handleDetetingSeller = seller => {
-        fetch(`http://localhost:5000/users/sellers/${seller._id}`, {
+        fetch(`https://assignment-twelve-server-six.vercel.app/users/sellers/${seller._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -96,7 +96,7 @@ const AllSellers = () => {
                                     <td>{seller.email}</td>
                                     <td>{seller.role}</td>
                                     <td>{!seller.verified && <button onClick={() => handleVarifySeller(seller)} className="btn btn-xs btn-outline btn-primary">Varify</button>}
-                                    {seller.verified && <p className='text-blue-400 text-2xl font-bold'>✔</p>}
+                                        {seller.verified && <p className='text-blue-400 text-2xl font-bold'>✔</p>}
                                     </td>
                                     <td>
                                         <label onClick={() => setDeletingSeller(seller)} htmlFor="confirmation-modal" className="btn btn-xs btn-error text-white">Delete</label>

@@ -5,7 +5,7 @@ import CategoriesCard from './CategoriesCard';
 const ProductCategories = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/categoriesType')
+        axios.get('https://assignment-twelve-server-six.vercel.app/categoriesType')
             .then((data) => {
                 console.log(data.data);
                 setCategories(data.data)

@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 const ProductsCard = ({ product, setAvailabeProducts }) => {
-    
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []);
     const { _id, name, image, conditionType, resalePrice, originalPrice, yearsUsed, yearOfPurchase, sellerName, sellerPhone, sellerLocation, postTime, paid, status } = product;
 
     const handleReport = id => {
-        fetch(`http://localhost:5000/productReport/${id}`, {
+        fetch(`https://assignment-twelve-server-six.vercel.app/productReport/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -25,15 +25,16 @@ const ProductsCard = ({ product, setAvailabeProducts }) => {
                         title: 'Product Reported',
                         showConfirmButton: false,
                         timer: 2000
-                    })}
-                    else {
-                        Swal.fire({
-                            position: 'center center',
-                            icon: 'error',
-                            title: data.message
-                          })
-                    }
+                    })
                 }
+                else {
+                    Swal.fire({
+                        position: 'center center',
+                        icon: 'error',
+                        title: data.message
+                    })
+                }
+            }
             )
     }
 

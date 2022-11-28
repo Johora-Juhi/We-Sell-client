@@ -11,16 +11,16 @@ const CheckoutForm = ({ order }) => {
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState("");
 
-    const orderPrice= parseInt(price);
+    const orderPrice = parseInt(price);
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://assignment-twelve-server-six.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
-            body: JSON.stringify({orderPrice}),
+            body: JSON.stringify({ orderPrice }),
         })
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
@@ -81,7 +81,7 @@ const CheckoutForm = ({ order }) => {
                 email,
                 orderId: _id
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://assignment-twelve-server-six.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

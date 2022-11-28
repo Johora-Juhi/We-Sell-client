@@ -21,7 +21,7 @@ const AddProduct = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categoriesType')
+            const res = await fetch('https://assignment-twelve-server-six.vercel.app/categoriesType')
             const data = await res.json();
             return data;
         }
@@ -58,7 +58,7 @@ const AddProduct = () => {
                     postTime: today
                 }
 
-                fetch('http://localhost:5000/categories', {
+                fetch('https://assignment-twelve-server-six.vercel.app/categories', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

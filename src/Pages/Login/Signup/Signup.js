@@ -50,7 +50,7 @@ const SignUp = () => {
 
     const saveUser = (name, email, role) => {
         const user = { name, email, role };
-        fetch('http://localhost:5000/users', {
+        fetch('https://assignment-twelve-server-six.vercel.app/users', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -107,18 +107,18 @@ const SignUp = () => {
                     {errors.password && <p className='text-red-500' >{errors.password?.message}</p>}
                 </div>
                 <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Role</span>
-                        </label>
-                        <select className="select select-bordered w-full max-w-xs"
-                            {...register("role", {
-                                required: true
-                            })}
-                        >
-                            <option default value="buyer">Buyer</option>
-                            <option value="seller">Seller</option>
-                        </select>
-                    </div>
+                    <label className="label">
+                        <span className="label-text">Role</span>
+                    </label>
+                    <select className="select select-bordered w-full max-w-xs"
+                        {...register("role", {
+                            required: true
+                        })}
+                    >
+                        <option default value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+                </div>
                 <div className="form-control mt-2">
                     <button className="btn btn-primary text-white">SignUp</button>
                 </div>

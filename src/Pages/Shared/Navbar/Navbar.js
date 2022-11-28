@@ -7,7 +7,7 @@ const Navbar = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/categoriesType')
+        fetch('https://assignment-twelve-server-six.vercel.app/categoriesType')
             .then(res => res.json())
             .then(data => {
                 console.log(data);

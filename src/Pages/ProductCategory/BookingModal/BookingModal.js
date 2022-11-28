@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
-const BookingModal = ({avaiableProducts, setAvailabeProducts}) => {
+const BookingModal = ({ avaiableProducts, setAvailabeProducts }) => {
     const { user } = useContext(AuthContext);
 
-    const {name,image,resalePrice,_id} = avaiableProducts;
+    const { name, image, resalePrice, _id } = avaiableProducts;
     const handleOrder = event => {
         event.preventDefault();
         const form = event.target;
@@ -25,7 +25,7 @@ const BookingModal = ({avaiableProducts, setAvailabeProducts}) => {
             location
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://assignment-twelve-server-six.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -53,7 +53,7 @@ const BookingModal = ({avaiableProducts, setAvailabeProducts}) => {
                         position: 'center center',
                         icon: 'error',
                         title: data.message
-                      })
+                    })
                 }
             })
         console.log(order);
@@ -84,12 +84,12 @@ const BookingModal = ({avaiableProducts, setAvailabeProducts}) => {
                         <label className="label">
                             <span className="label-text">Phone Number</span>
                         </label>
-                        <input name='phone' type="text" placeholder='Enter Your Phone Number' className="input input-bordered w-full" required/>
+                        <input name='phone' type="text" placeholder='Enter Your Phone Number' className="input input-bordered w-full" required />
 
                         <label className="label">
                             <span className="label-text">Buying Location</span>
                         </label>
-                        <input name='location' type="text" placeholder='Enter Your Location' className="input input-bordered w-full" required/>
+                        <input name='location' type="text" placeholder='Enter Your Location' className="input input-bordered w-full" required />
                         <input className='btn btn-primary w-full mt-4' type="submit" value="Submit" />
                     </form>
                 </div>
