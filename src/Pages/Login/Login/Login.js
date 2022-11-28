@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
@@ -8,22 +8,31 @@ import useTitle from '../../../hooks/useTitle';
 
 const Login = () => {
     useTitle('Login');
-    const { signIn, googleLogin } = useContext(AuthContext);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { googleLogin, signIn } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
-    const location = useLocation();
     const navigate = useNavigate();
+    const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    const { register, formState: { errors }, handleSubmit } = useForm();
-
     const [LoginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(LoginUserEmail);
+    const user = useContext(AuthContext);
 
-    if (token) {
-        // navigate(from, { replace: true });
-        navigate('/')
+    console.log(LoginUserEmail);
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [from, token, navigate])
+
+    if (user?.email) {
+        navigate(from, { replace: true });
     }
+
     const handleLogin = data => {
         console.log(data);
+        setLoginUserEmail('');
         setLoginError('')
         signIn(data.email, data.password)
             .then(res => {
@@ -32,24 +41,30 @@ const Login = () => {
                 setLoginUserEmail(data.email);
             })
             .catch(error => {
-                console.error(error.message);
+                console.log(error);
                 setLoginError(error.message);
             })
     }
+
     const handleGoogleSignIn = () => {
+
         googleLogin()
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                const role = "buyer";
+                const role = "user";
                 saveUser(user.displayName, user.email, role);
             })
             .catch(error => console.error('error', error))
     }
+
+
     const saveUser = (name, email, role) => {
+        setLoginUserEmail('');
         const user = { name, email, role };
+        console.log(user);
         fetch('http://localhost:5000/users', {
-            method: "POST",
+            method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
@@ -57,8 +72,8 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 setLoginUserEmail(email);
+                console.log(data);
             })
     }
     return (

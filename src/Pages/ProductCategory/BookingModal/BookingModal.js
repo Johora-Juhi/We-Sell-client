@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const BookingModal = ({avaiableProducts, setAvailabeProducts}) => {
     const { user } = useContext(AuthContext);
 
-    const {name,image,resalePrice} = avaiableProducts;
+    const {name,image,resalePrice,_id} = avaiableProducts;
     const handleOrder = event => {
         event.preventDefault();
         const form = event.target;
@@ -15,6 +15,7 @@ const BookingModal = ({avaiableProducts, setAvailabeProducts}) => {
         const location = form.location.value;
 
         const order = {
+            productId: _id,
             productName: name,
             image,
             price: resalePrice,
@@ -27,7 +28,9 @@ const BookingModal = ({avaiableProducts, setAvailabeProducts}) => {
         fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+
             },
             body: JSON.stringify(order),
         })

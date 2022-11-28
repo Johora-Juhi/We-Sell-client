@@ -51,7 +51,7 @@ const AddProduct = () => {
                     yearOfPurchase: data.yearOfPurchase,
                     description: data.description,
                     image: imgData.data.url,
-                    yearsUsed: currnetYear - data.yearOfPurchase,
+                    yearsUsed: toString(currnetYear - data.yearOfPurchase),
                     postTime: today
                 }
 

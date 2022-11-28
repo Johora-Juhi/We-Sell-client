@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
@@ -26,7 +27,7 @@ const MyWishlist = () => {
     return (
         <div className='bg-blue-50 p-8'>
         <div>
-            <h1 className='text-xl font-bold'>Manage Products: {products?.length}</h1>
+            <h1 className='text-xl font-bold'>My Wishlist: {products?.length}</h1>
         </div>
         <div className="overflow-x-auto my-8">
             <table className="table w-full">
@@ -50,20 +51,14 @@ const MyWishlist = () => {
                                 <td>{product.phone}</td>
                                 <td>
                                     {
-                                        product.resalePrice && !product.paid &&
-                                        <p>Avaiable</p>
+                                        product.price && !product.paid &&
+                                        <Link to={`/dashboard/payment/${product._id}`} className="btn btn-sm text-white btn-primary"><button>Pay</button></Link>
                                     }
                                     {
-                                        product.resalePrice && product.paid &&
-                                        <p className='text-green-500'>Paid</p>
+                                        product.price && product.paid &&
+                                        <p className='text-green-600'>Paid</p>
                                     }
                                 </td>
-                                {/* <td>
-                                    {/* {<button onClick={() => handleAdvertise(product._id)} className="btn btn-xs btn-outline btn-primary" disabled={product.advertise}>Advertise</button>}
-                                </td>
-                                <td>
-                                    <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-xs btn-error text-white">Delete</label> 
-                                </td> */}
                             </tr>
                         )
                     }

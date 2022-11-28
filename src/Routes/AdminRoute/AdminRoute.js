@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
+import Loading from '../../Pages/Shared/Loading/Loading';
 
 
 const AdminRoute = ({ children }) => {
@@ -9,7 +10,7 @@ const AdminRoute = ({ children }) => {
     const [isAdmin, isAdminLoading]=useAdmin(user?.email);
     const location = useLocation();
     if (loading || isAdminLoading) {
-        return <button className="btn btn-square loading m-auto"></button>
+        return <Loading></Loading>
     }
     if (user && isAdmin) {
         return children;

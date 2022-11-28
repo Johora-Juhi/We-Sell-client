@@ -1,13 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import useTitle from '../../hooks/useTitle';
-import Loading from '../Shared/Loading/Loading';
-import BookingModal from './BookingModal/BookingModal';
-import ProductsCard from './ProductsCard';
-import banner from '../../assets/images/banner2.jpg';
 import './ProductCategory.css';
 import 'animate.css';
+import BookingModal from '../BookingModal/BookingModal';
+import useTitle from '../../../hooks/useTitle';
+import ProductsCard from '../ProductsCard/ProductsCard';
 
 const ProductCategory = () => {
     useTitle('Products');

@@ -1,5 +1,5 @@
-.proBanner{
-    background: rgba(0,0,0,0.20) url(../../assets/images/banner2.jpg);
+.proBanner {
+    background: rgba(0, 0, 0, 0.20) url(../../../assets/images/banner2.jpg);
     background-blend-mode: darken;
     background-position: center;
     background-size: cover;
