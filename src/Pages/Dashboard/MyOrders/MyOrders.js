@@ -47,6 +47,7 @@ const MyOrders = () => {
                             </p>
 
                             <div className="card-actions justify-end">
+                                {/* payment  */}
                                 {
                                     product.price && !product.paid &&
                                     <Link to={`/dashboard/payment/${product._id}`} className="btn rounded-none text-white btn-primary "><button>Pay Now</button></Link>
