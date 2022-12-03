@@ -62,11 +62,11 @@ const router = createBrowserRouter([
                 path: '/dashboard/myorders',
                 element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             },
-            // {
-            //     path: '/dashboard/payment/:id',
-            //     element: <BuyerRoute><MakePayment></MakePayment></BuyerRoute>,
-            //     loader: ({ params }) => fetch(`https://assignment-twelve-server-six.vercel.app/myorders/${params.id}`)
-            // },
+            {
+                path: '/dashboard/payment/:id',
+                element: <MakePayment></MakePayment>,
+                loader: ({ params }) => fetch(`https://assignment-twelve-server-six.vercel.app/myorders/${params.id}`)
+            },
             {
                 path: '/dashboard/allsellers',
                 element: <AdminRoute><AllSellers></AllSellers></AdminRoute>

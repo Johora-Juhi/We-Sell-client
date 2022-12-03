@@ -20,11 +20,11 @@ const CheckoutForm = ({ order }) => {
                 "Content-Type": "application/json",
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
-            body: JSON.stringify({ orderPrice }),
+            body: JSON.stringify({ price }),
         })
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
-    }, [orderPrice]);
+    }, [price]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
